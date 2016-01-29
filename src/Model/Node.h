@@ -16,6 +16,7 @@ private:
 	Node * pointers;	//Pointer to the array of Nodes that are linked to this Node.
 public:
 	Node();
+	Node(Type value);
 	virtual ~Node();
 	Type getValue();
 	Node * getPointers();
