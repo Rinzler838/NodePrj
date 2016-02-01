@@ -9,8 +9,8 @@
 
 NodeController::NodeController()
 {
-	// TODO Auto-generated constructor stub
-
+	this->intNode.setValue(5);
+	this->stringArrayNode.setValue("Words are fun");
 }
 
 NodeController::~NodeController()
@@ -18,3 +18,8 @@ NodeController::~NodeController()
 	// TODO Auto-generated destructor stub
 }
 
+void NodeController :: start()
+{
+	cout << intNode.getValue() << endl;
+	cout << stringArrayNode.getValue() << endl;
+}
