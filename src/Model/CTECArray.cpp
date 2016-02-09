@@ -83,7 +83,8 @@ Type* CTECArray<Type>:: get(int position)
 			}
 			else
 			{
-				return current->getValue();
+				Type temp = current->getValue();	//Grab the value stored in the Node
+				return &temp;						//Return a pointer to the value
 			}
 		}
 	}
