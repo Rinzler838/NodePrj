@@ -12,26 +12,22 @@ template <class Type>
 CTECArray<Type>::CTECArray(int size)
 {
 	this->size = size;
-	head = nullptr;
+	this->head = nullptr;
 
-	if (size <= 0)
-	{
-		cerr << "Imposssibru!!!" <<endl;
-		return;
-	}
+	assert(size > 0);
 
 	for (int index = 0; index < size; index++)
 	{
 		if (head != nullptr)
-		{	//Ve have more zan van ArrayNode.
-			ArrayNode<Type> nextNode;
+		{	//Ve have more zan von ArrayNode.
+			ArrayNode<Type> * nextNode = new ArrayNode<Type>();
 			nextNode.setNext(head);
-			head = &nextNode;
+			head = nextNode;
 		}
 		else
 		{	//Zis is ze first node in ze array.
-			ArrayNode<Type>first;
-			head = &first;
+			ArrayNode<Type> * first = new ArrayNode<Type>();
+			head = first;
 		}
 	}
 }
@@ -46,14 +42,9 @@ CTECArray<Type>::~CTECArray()
 		{
 			head = deleteMe->getNext();
 			deleteMe->setNext(nullptr);
+		}
 			delete deleteMe->getNext();
 			deleteMe = head;
-		}
-		else
-		{
-			delete deleteMe->getNext();
-			deleteMe = head;
-		}
 	}
 	delete head;
 }
@@ -65,52 +56,43 @@ int CTECArray<Type>:: getSize()
 }
 
 template <class Type>
-Type* CTECArray<Type>:: get(int position)
+Type CTECArray<Type>:: get(int position)
 {
-	if (position >= size || position < 0)
+	assert(position < size && position >= 0);
+
+	ArrayNode<Type> * current = head;
+
+	for (int spot = 0; spot <= position; spot++)
 	{
-		cerr << "Error" << endl;
-		return nullptr;
-	}
-	else
-	{
-		ArrayNode<Type> * current = head;
-		for (int spot = 0; spot <= position; spot++)
+		if (spot != position)
 		{
-			if (spot != position)
-			{
-				current = current->getNext();
-			}
-			else
-			{
-				Type temp = current->getValue();	//Grab the value stored in the Node
-				return &temp;						//Return a pointer to the value
-			}
+			current = current->getNext();
+		}
+		else
+		{
+			return current->getValue();	//Grab the value stored in the Node					//Return a pointer to the value
 		}
 	}
 }
 
 template <class Type>
-void CTECArray<Type>:: set(int position, Type value)
+void CTECArray<Type>:: set(int position, const Type& value)
 {
-	if (position >= size || position < 0)
-		{
-			cerr << "Error" << endl;
-		}
-		else
-		{
-			ArrayNode<Type> * current = head;
-				for (int spot = 0; spot <= position; spot++)
-				{
-					if (spot != position)
-				{
-					current = current->getNext();
-				}
-				else
-				{
-					current->setValue(value);
-				}
-			}
+	assert(position < size && position >= 0);
+
+	ArrayNode<Type> * current = head;
+	for (int spot = 0; spot <= position; spot++)
+	{
+		if (spot != position)
+	{
+		current = current->getNext();
 	}
+	else
+	{
+		current->setValue(value);
+
+	}
+}
+
 }
 

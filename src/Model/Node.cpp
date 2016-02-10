@@ -12,7 +12,6 @@ using namespace std;
 template <class Type>
 Node<Type>::Node()
 {
-	value = 0;
 	pointers = nullptr;
 }
 
