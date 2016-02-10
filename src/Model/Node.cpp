@@ -6,7 +6,6 @@
  */
 
 #include "Node.h"
-#include <iostream>
 using namespace std;
 
 template <class Type>
@@ -16,7 +15,7 @@ Node<Type>::Node()
 }
 
 template <class Type>
-Node<Type>::Node(Type value)
+Node<Type>::Node(const Type& value)
 {
 	this->value = value;
 	pointers = nullptr;
@@ -32,6 +31,12 @@ template <class Type>
 Type Node<Type> :: getValue()
 {
 	return this->value;
+}
+
+template <class Type>
+void Node<Type> :: setValue(const Type& value)
+{
+	this->value = value;
 }
 
 template <class Type>

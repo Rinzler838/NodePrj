@@ -6,6 +6,7 @@
  */
 
 #include "CTECArray.h"
+#include <assert.h>
 using namespace std;
 
 template <class Type>
@@ -21,7 +22,7 @@ CTECArray<Type>::CTECArray(int size)
 		if (head != nullptr)
 		{	//Ve have more zan von ArrayNode.
 			ArrayNode<Type> * nextNode = new ArrayNode<Type>();
-			nextNode.setNext(head);
+			nextNode->setNext(head);
 			head = nextNode;
 		}
 		else
@@ -61,7 +62,6 @@ Type CTECArray<Type>:: get(int position)
 	assert(position < size && position >= 0);
 
 	ArrayNode<Type> * current = head;
-
 	for (int spot = 0; spot <= position; spot++)
 	{
 		if (spot != position)
@@ -70,7 +70,7 @@ Type CTECArray<Type>:: get(int position)
 		}
 		else
 		{
-			return current->getValue();	//Grab the value stored in the Node					//Return a pointer to the value
+			return current->getValue();
 		}
 	}
 }
@@ -90,7 +90,6 @@ void CTECArray<Type>:: set(int position, const Type& value)
 	else
 	{
 		current->setValue(value);
-
 	}
 }
 
