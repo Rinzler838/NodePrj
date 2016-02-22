@@ -13,41 +13,14 @@ template <class Type>
 CTECList<Type>::CTECList()
 {
 	this->size = size;
-		this->head = nullptr;
-
-		assert(size > 0);
-
-		for (int index = 0; index < size; index++)
-		{
-			if (head != nullptr)
-			{	//Ve have more zan von ArrayNode.
-				ArrayNode<Type> * nextNode = new ArrayNode<Type>();
-				nextNode->setNext(head);
-				head = nextNode;
-			}
-			else
-			{	//Zis is ze first node in ze array.
-				ArrayNode<Type> * first = new ArrayNode<Type>();
-				head = first;
-			}
-		}
+	this->head = nullptr;
+	this->end = nullptr;
 }
 
 template <class Type>
 CTECList<Type>::~CTECList()
 {
-	ArrayNode<Type> * deleteMe = head;
-		for (int index = 0; index < size; index++)
-		{
-			if (deleteMe->getNext() != nullptr)
-			{
-				head = deleteMe->getNext();
-				deleteMe->setNext(nullptr);
-			}
-				delete deleteMe->getNext();
-				deleteMe = head;
-		}
-		delete head;
+	//De-structor
 }
 
 template <class Type>
@@ -95,13 +68,21 @@ Type CTECList<Type>::getFrontFromIndex(int index)
 template <class Type>
 Type CTECList<Type>::removeFromFront()
 {
-
+	//Create a pointer to what is after head:
+	ArrayNode<Type> * newHead = ArrayNode<Type>();
+	newHead = head->getNext();
+	//Delete what head is pointing to
+	delete this->head;
+	//Set head to the new head
+	this->head = newHead;
 }
 
 template <class Type>
 Type CTECList<Type>::removeFromEnd()
 {
-
+	//Loop over size
+	//or
+	//Loop until ->getNext() == nullptr
 }
 
 template <class Type>
