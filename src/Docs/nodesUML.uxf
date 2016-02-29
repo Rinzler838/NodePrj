@@ -36,7 +36,7 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
+      <x>20</x>
       <y>250</y>
       <w>480</w>
       <h>150</h>
@@ -100,10 +100,10 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1030</x>
+      <x>1020</x>
       <y>250</y>
       <w>300</w>
-      <h>290</h>
+      <h>310</h>
     </coordinates>
     <panel_attributes>Model::CTECList
 --
@@ -114,6 +114,7 @@ bg=blue</panel_attributes>
 + CTECList(): constructor
 + ~CTECList(): destructor
 + getSize(): int size
+- calculateSize(): void
 + addToFront(Type value): void
 + addToEnd(Tye value): void
 + addAtIndex(int index, Type value): void
@@ -156,25 +157,25 @@ bg=red</panel_attributes>
     <coordinates>
       <x>790</x>
       <y>440</y>
-      <w>260</w>
+      <w>250</w>
       <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 m1=1
 m2=0..n</panel_attributes>
-    <additional_attributes>240.0;10.0;10.0;10.0;10.0;60.0</additional_attributes>
+    <additional_attributes>230.0;10.0;10.0;10.0;10.0;60.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
+      <x>330</x>
       <y>390</y>
-      <w>400</w>
+      <w>430</w>
       <h>130</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 m1=1
 m2=0..n</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;60.0;360.0;60.0;360.0;110.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0;390.0;60.0;390.0;110.0</additional_attributes>
   </element>
 </diagram>

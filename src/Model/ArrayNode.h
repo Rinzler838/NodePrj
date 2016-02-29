@@ -14,7 +14,7 @@ template <class Type>
 class ArrayNode: public Node<Type>
 {
 private:
-	next * ArrayNode;
+	ArrayNode * next;
 public:
 	ArrayNode();
 	ArrayNode(Type value);
