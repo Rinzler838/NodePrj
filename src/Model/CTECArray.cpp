@@ -12,7 +12,7 @@ using namespace std;
 template <class Type>
 CTECArray<Type>::CTECArray(int size)
 {
-	this->size = size;
+	this->size = 0;
 	this->head = nullptr;
 
 	assert(size > 0);
