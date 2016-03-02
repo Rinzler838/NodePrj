@@ -20,7 +20,7 @@ CTECList<Type>::CTECList()
 template <class Type>
 CTECList<Type>::~CTECList()
 {
-	//BLANK
+	//TO-DO Auto-Generated Destructor stub
 }
 
 template <class Type>
@@ -32,19 +32,62 @@ int CTECList<Type>::getSize()
 template <class Type>
 void CTECList<Type>::addToFront(Type value)
 {
+	ArrayNode<Type> * newNode = new ArrayNode<Type>;
 
+	newNode->info = value;
+	newNode->link = head;
+	head = newNode;
+	size++;
+
+	if (end == NULL)
+	{
+		end = newNode;
+	}
 }
 
 template <class Type>
 void CTECList<Type>::addToEnd(Type value)
 {
+	ArrayNode<Type> * newNode = new ArrayNode<Type>;
 
+	newNode->info = value;
+	newNode->link = NULL;
+
+	if (head == NULL)
+	{
+		head = newNode;
+		end = newNode;
+		size++;
+	}
+	else
+	{
+		end->link = newNode;
+		end = newNode;
+		size++;
+	}
 }
 
 template <class Type>
 void CTECList<Type>::addAtIndex(int index, Type value)
 {
+	ArrayNode<Type> * newNode = new ArrayNode<Type>;
+	ArrayNode<Type> * spot = index;
 
+	newNode->info = value;
+	newNode->link = NULL;
+
+	if (head == NULL)
+	{
+		head = newNode;
+		end = newNode;
+		size++;
+	}
+	else
+	{
+		spot->index = newNode;
+		end = newNode;
+		size++;
+	}
 }
 
 template <class Type>
@@ -62,7 +105,9 @@ Type CTECList<Type>::getEnd()
 template <class Type>
 Type CTECList<Type>::getFrontFromIndex(int index)
 {
+	ArrayNode<Type> * frontFromIndex = index;
 
+	return frontFromIndex;
 }
 
 template <class Type>
@@ -71,7 +116,7 @@ Type CTECList<Type>::removeFromFront()
 	Type returnValue;
 	assert(size > 0);
 	//Create a pointer to what is after head:
-	ArrayNode<Type> * newHead = ArrayNode<Type>();
+	ArrayNode<Type> * newHead;
 	newHead = head->getNext();
 	//Get what was in the head node
 	returnValue = this->head->getValue();
@@ -87,21 +132,39 @@ Type CTECList<Type>::removeFromFront()
 template <class Type>
 Type CTECList<Type>::removeFromEnd()
 {
-	//Loop over size
-	//or
-	//Loop until getNext() == nullptr
-	//Before return the variable call calculateSize()
+	//**************************************************//
+	//Check for size == 1, it is a special case			//
+	//Loop over size									//
+	//or												//
+	//Loop until getNext() == nullptr					//
+	//Grab value from the last node						//
+	//Set the next to last node to point to nullptr		//
+	//Set the next to last node as end					//
+	//Delete the old last node							//
+	//Before return the variable call calculateSize()	//
+	//Return value										//
+	//**************************************************//
+
+	assert(size > 0);
 	Type valueToRemove;
-	ArrayNode<Type> * thisNode;
-	thisNode = getFront();
+	ArrayNode<Type> * thisNode = getFront();
+
+	if (size == 1)
+	{
+		valueToRemove = removeFromFront();
+		end = nullptr;
+		calculateSize();
+		return valueToRemove;
+	}
+
 	while (thisNode->getNext()->getNext() != nullptr)
 	{
 		thisNode = thisNode->getNext();
 	}
-
-	thisNode->setNext()->nullptr;
+	valueToRemove = thisNode->getNext()->getValue();
+	end = thisNode;
 	delete thisNode->getNext();
-	thisNode->getNext()->getValue();
+
 	this->calculateSize();
 	return valueToRemove();
 }
@@ -140,23 +203,6 @@ Type CTECList<Type>::removeFromIndex(int index)
 	return thingToRemove;
 }
 
-//?
-//	Type returnValue;
-//	assert(size > 0 && index >= && index < size);
-//
-//	if (index < 0 && index > size)
-//	{
-//		ArrayNode<Type> * previous = index - 1;
-//		ArrayNode<Type> * toDelete = previous->getNext();
-//		delete toDelete;
-//		previous->setNext(toDelete->getNext());
-//	}
-//	else
-//	{
-//		cout << "Error, index must be greater than size and not negative" << endl;
-//	}
-//?
-
 /**
  * Calculates the size of the list by iterating over all nodes in the list.
  */
@@ -188,7 +234,19 @@ void CTECList<Type> :: calculateSize()
 template <class Type>
 Type CTECList<Type>::set(int index, Type value)
 {
+	assert(index < size && index >= 0);
 
+	ArrayNode<Type> * current = head;
+	for (int spot = 0; spot <= index; spot++)
+	{
+		if (spot != index)
+	{
+		current = current->getNext();
+	}
+	else
+	{
+		current->setValue(value);
+	}
 }
 
-
+}
