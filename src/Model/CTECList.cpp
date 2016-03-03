@@ -23,24 +23,36 @@ CTECList<Type>::~CTECList()
 	//TODO Auto-Generated Destructor stub
 }
 
+/**
+ * Returns the size of the list.
+ */
 template <class Type>
 int CTECList<Type>::getSize()
 {
 	return this->size;
 }
 
+/**
+ * Returns the front, or head of the list.
+ */
 template <class Type>
 Type CTECList<Type>::getFront()
 {
 	return head;
 }
 
+/**
+ * Returns the end or the list.
+ */
 template <class Type>
 Type CTECList<Type>::getEnd()
 {
 	return end;
 }
 
+/**
+ * Returns the front of the list from the given index.
+ */
 template <class Type>
 Type CTECList<Type>::getFrontFromIndex(int index)
 {
@@ -49,6 +61,9 @@ Type CTECList<Type>::getFrontFromIndex(int index)
 	return frontFromIndex;
 }
 
+/**
+ * Adds a new Node to the front, or head of the list if the list is not empty.
+ */
 template <class Type>
 void CTECList<Type>::addToFront(Type value)
 {
@@ -66,6 +81,10 @@ void CTECList<Type>::addToFront(Type value)
 	}
 }
 
+/**
+ * Adds a new Node to the end of the list if the list isn't empty.
+ * Calculates list size.
+ */
 template <class Type>
 void CTECList<Type>::addToEnd(Type value)
 {
@@ -89,6 +108,10 @@ void CTECList<Type>::addToEnd(Type value)
 	}
 }
 
+/**
+ * Adds a new Node at the given index if the list is not empty.
+ * Calculates list size.
+ */
 template <class Type>
 void CTECList<Type>::addAtIndex(int index, Type value)
 {
@@ -113,6 +136,10 @@ void CTECList<Type>::addAtIndex(int index, Type value)
 	this->calculateSize;
 }
 
+/**
+ * Removes a Node from the front, or head of the list, given the list is not empty.
+ * Calculates list size.
+ */
 template <class Type>
 Type CTECList<Type>::removeFromFront()
 {
@@ -132,6 +159,10 @@ Type CTECList<Type>::removeFromFront()
 	return returnValue;
 }
 
+/**
+ * Removes a Node from the end of the list, if the list is not empty.
+ * Calculates list size.
+ */
 template <class Type>
 Type CTECList<Type>::removeFromEnd()
 {
@@ -172,6 +203,10 @@ Type CTECList<Type>::removeFromEnd()
 	return valueToRemove();
 }
 
+/**
+ * Removes a Node from the spot at the given index if the list isn't empty.
+ * Calculates list size.
+ */
 template <class Type>
 Type CTECList<Type>::removeFromIndex(int index)
 {
@@ -234,6 +269,9 @@ void CTECList<Type> :: calculateSize()
 	}
 }
 
+/**
+ * Sets data members to their proper values.
+ */
 template <class Type>
 Type CTECList<Type>::set(int index, Type value)
 {
