@@ -20,7 +20,7 @@ CTECList<Type>::CTECList()
 template <class Type>
 CTECList<Type>::~CTECList()
 {
-	//TODO Auto-Generated Destructor stub
+	//TODO Auto-Generated destructor stub
 }
 
 /**
@@ -42,7 +42,7 @@ Type CTECList<Type>::getFront()
 }
 
 /**
- * Returns the end or the list.
+ * Returns the end of the list.
  */
 template <class Type>
 Type CTECList<Type>::getEnd()
@@ -51,14 +51,39 @@ Type CTECList<Type>::getEnd()
 }
 
 /**
- * Returns the front of the list from the given index.
+ * Returns the node in the list at the given index.
  */
 template <class Type>
-Type CTECList<Type>::getFrontFromIndex(int index)
+Type CTECList<Type>::getFromIndex(int index)
 {
-	ArrayNode<Type> * frontFromIndex = index;
+	//******************************************//
+	//	Check to make sure index > 0 & <= size	//
+	//	Create a reference to head				//
+	//	Get front if index is 0					//
+	//	Loop to index							//
+	//	Update pointer to the next				//
+	//	Return the pointer to the desired Node	//
+	//******************************************//
 
-	return frontFromIndex;
+	assert(index >= 0 && index < size);
+
+	ArrayNode<Type> * nodeFromIndex = head;
+	if (index == 0)
+	{
+		getFront();
+	}
+	else if (index == size -1)
+	{
+		getEnd();
+	}
+	else
+	{
+		for (int spot = 0; spot <= index; spot++)
+		{
+			nodeFromIndex = nodeFromIndex->getNext();
+		}
+		return nodeFromIndex;
+	}
 }
 
 /**
@@ -69,16 +94,14 @@ void CTECList<Type>::addToFront(Type value)
 {
 	assert(size >= 0);
 
-	ArrayNode<Type> * newNode = new ArrayNode<Type>;
-	newNode->info = value;
-	newNode->link = head;
+	ArrayNode<Type> newNode = new ArrayNode<Type>;
+	value = newNode->setValue();//
+	this->head = newNode->setNext();//
+	newNode = this->head;//
 	head = newNode;
 	size++;
 
-	if (end == NULL)
-	{
-		end = newNode;
-	}
+	this->calculateSize;
 }
 
 /**
@@ -90,22 +113,15 @@ void CTECList<Type>::addToEnd(Type value)
 {
 	assert(size >= 0);
 
-	ArrayNode<Type> * newNode = new ArrayNode<Type>;
-	newNode->info = value;
-	newNode->link = NULL;
+	ArrayNode<Type> newNode = new ArrayNode<Type>;
+	value = newNode->setValue();//
+	newNode = this->end->setNext();//
+	newNode = this->end;//
+	end = newNode;
+	nullptr = newNode->setNext();//
+	size++;
 
-	if (head == NULL)
-	{
-		head = newNode;
-		end = newNode;
-		size++;
-	}
-	else
-	{
-		end->link = newNode;
-		end = newNode;
-		size++;
-	}
+	this->calculateSize;
 }
 
 /**
@@ -116,24 +132,30 @@ template <class Type>
 void CTECList<Type>::addAtIndex(int index, Type value)
 {
 	assert(size >= 0);
-	assert(index <= size);
+	assert(index >= 0 && index < size);
 
-	ArrayNode<Type> * newNode = new ArrayNode<Type>;
-	newNode->info = value;
-
-	for (int spot = 0; spot < index; spot ++)
-	{
-		//???
-	}
-	//previous set next to new node
-	//next newNext
+	ArrayNode<Type> newNode = new ArrayNode<Type>;
+	ArrayNode<Type> * previous;
+	value = newNode->setValue();//
 
 	if (index == 0)
 	{
-		newNode->addToFront();
+		newNode->addToFront();//
 	}
-
-	this->calculateSize;
+	else if (index == size -1)
+	{
+		newNode->addToEnd();//
+	}
+	else
+	{
+		for (int spot = 0; spot < index - 1; spot ++)
+		{
+			previous = previous->getNext();
+		}
+		newNode = previous->setNext();//
+		newNode->setNext(previous->getNext()->getNext());//
+		size++;
+	}
 }
 
 /**

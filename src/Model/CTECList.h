@@ -27,7 +27,7 @@ public:
 	void addAtIndex(int index, Type value);
 	Type getFront();
 	Type getEnd();
-	Type getFrontFromIndex(int index);
+	Type getFromIndex(int index);
 	Type removeFromFront();
 	Type removeFromEnd();
 	Type removeFromIndex(int index);
