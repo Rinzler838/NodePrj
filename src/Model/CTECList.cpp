@@ -29,6 +29,7 @@ CTECList<Type>::~CTECList()
 template <class Type>
 int CTECList<Type>::getSize()
 {
+	calculateSize();
 	return this->size;
 }
 
@@ -38,6 +39,9 @@ int CTECList<Type>::getSize()
 template <class Type>
 Type CTECList<Type>::getFront()
 {
+	Type returnValue;
+	assert(size > 0);
+	this->head = ArrayNode<Type>[0];
 	return head;
 }
 
@@ -47,6 +51,20 @@ Type CTECList<Type>::getFront()
 template <class Type>
 Type CTECList<Type>::getEnd()
 {
+	assert(size > 0);
+	Type valueToRemove;
+	ArrayNode<Type> * thisNode = getFront();
+
+	if (size == 1)
+	{
+		end = nullptr;
+	}
+
+	while (thisNode->getNext() != nullptr)
+	{
+		thisNode = thisNode->getNext();
+	}
+	end = thisNode;
 	return end;
 }
 
