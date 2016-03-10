@@ -12,15 +12,29 @@ using namespace std;
 template <class Type>
 CTECList<Type>::CTECList()
 {
-	this->size = size;
+	this->size = 0;
 	this->head = nullptr;
 	this->end = nullptr;
 }
 
+/**
+ * Destroys everything in the list.
+ */
 template <class Type>
 CTECList<Type>::~CTECList()
 {
-	//TODO Auto-Generated destructor stub
+	ArrayNode<Type> * current = head;
+	while (current->getNext() != nullptr)
+	{
+		ArrayNode<Type> * temp = current;
+		current = current->getNext();
+		head = current;
+		delete temp;
+	}
+	delete head;
+	head = nullptr;
+	end = nullptr;
+	size = 0;
 }
 
 /**
@@ -92,17 +106,12 @@ Type CTECList<Type>::getFromIndex(int index)
  * Adds a new Node to the front, or head of the list if the list is not empty.
  */
 template <class Type>
-void CTECList<Type>::addToFront(Type value)
+void CTECList<Type>::addToFront(const Type& value)
 {
 	assert(size >= 0);
 
-	ArrayNode<Type> newNode = new ArrayNode<Type>;
-	value = newNode->setValue();//
-	this->head = newNode->setNext();//
-	newNode = this->head;//
+	ArrayNode<Type> * newNode = new ArrayNode<Type>(value, head);
 	head = newNode;
-	size++;
-
 	this->calculateSize;
 }
 
@@ -115,14 +124,9 @@ void CTECList<Type>::addToEnd(Type value)
 {
 	assert(size >= 0);
 
-	ArrayNode<Type> newNode = new ArrayNode<Type>;
-	value = newNode->setValue();//
-	newNode = this->end->setNext();//
-	newNode = this->end;//
+	ArrayNode<Type> * newNode = new ArrayNode<Type>(value, end);
 	end = newNode;
-	nullptr = newNode->setNext();//
-	size++;
-
+	nullptr = newNode->setNext();
 	this->calculateSize;
 }
 
@@ -137,27 +141,32 @@ void CTECList<Type>::addAtIndex(int index, Type value)
 	assert(index >= 0 && index < size);
 
 	ArrayNode<Type> newNode = new ArrayNode<Type>;
+	ArrayNode<Type> * current = newNode;
 	ArrayNode<Type> * previous;
-	value = newNode->setValue();//
+	ArrayNode<Type> * next;
+	newNode->setValue(value);
 
 	if (index == 0)
 	{
-		newNode->addToFront();//
+		newNode->addToFront();
 	}
 	else if (index == size -1)
 	{
-		newNode->addToEnd();//
+		newNode->addToEnd();
 	}
 	else
 	{
-		for (int spot = 0; spot < index - 1; spot ++)
+		for (int spot = 0; spot < index; spot ++)
 		{
+			current = current->getNext();
 			previous = previous->getNext();
+			next = next->getNext();
 		}
-		newNode = previous->setNext();//
-		newNode->setNext(previous->getNext()->getNext());//
+		newNode = previous->setNext();
+		newNode->setNext(next);
 		size++;
 	}
+	this->calculateSize();
 }
 
 /**

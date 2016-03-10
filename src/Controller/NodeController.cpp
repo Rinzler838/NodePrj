@@ -14,11 +14,20 @@ NodeController::NodeController()
 
 NodeController::~NodeController()
 {
+	//TODO Auto-generated destructor stub
+}
 
+void NodeController :: testLists()
+{
+	numbers->addToFront(3);
+	numbers->addToEnd(8);
+	cout << "End should be 8 and is: " << numbers->getEnd() <<endl;
 }
 
 void NodeController :: start()
 {
+	testLists();
+
 	arrayTimer.startTimer();
 
 	for (int index = 0; index < notHipsterInts->getSize(); index++)

@@ -9,25 +9,26 @@
 #define MODEL_CTECLIST_H_
 
 #include "ArrayNode.h"
-template <class Type>
 
+template <class Type>
 class CTECList
 {
 private:
 	int size;
 	ArrayNode<Type> * head;
 	ArrayNode<Type> * end;
+	int size;
 	void calculateSize();
 public:
 	CTECList();
 	~CTECList();
 	int getSize();
-	void addToFront(Type value);
-	void addToEnd(Type value);
-	void addAtIndex(int index, Type value);
 	Type getFront();
 	Type getEnd();
 	Type getFromIndex(int index);
+	void addToFront(const Type& value);
+	void addToEnd(Type value);
+	void addAtIndex(int index, Type value);
 	Type removeFromFront();
 	Type removeFromEnd();
 	Type removeFromIndex(int index);
